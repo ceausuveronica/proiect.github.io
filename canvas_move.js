@@ -1,4 +1,4 @@
-document.getElementById("id_logic_level_version").innerHTML = "Business level version: 2018.01.29.2"; 
+document.getElementById("id_logic_level_version").innerHTML = "Business level version: 2017.11.22.5"; 
 
 var canvas = document.getElementById("id_canvas");
 var context = canvas.getContext("2d");
@@ -51,3 +51,4 @@ function on_touch_move(e)
 			}
 	}
 }
+//----------------------------------------

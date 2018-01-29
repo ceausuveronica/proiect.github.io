@@ -1,0 +1,90 @@
+<script type="text/javascript">
+<!-- 
+// script gratuit
+
+// Alege un nr. aleator intre 1-100
+var nrul=Math.round(Math.random()*(99)+1);
+var mesaj='Ghiceste numarul (intre 1 si 100)';
+
+function procs(mystery) {
+  var nr=document.forms.guessquiz.nr.value;
+  var mesaj='"'+nr+ '" nu este un numar valabil.';
+  document.forms.guessquiz.nr.value='';
+
+  // Mesajele returnate
+  if (nr==mystery) {
+    document.forms.guessquiz.prompt.value='Felicitari! '+mystery+' este corect!';
+    alert ('Foarte bine - numarul misterios este '+mystery+'! \n\n Apasa acest buton pentru a juca din nou.');
+    mesaj='';
+    document.location=document.location; // Reincarca pagina
+  }
+
+  if (mystery<nr) {
+    mesaj='Mai mic decat '+ nr;
+  }
+
+  if (mystery>nr) {
+    mesaj='Mai mare decat '+ nr;
+  }
+
+  if (nr=='') {
+    mesaj='Nu ai ghicit nimic!'
+ }
+
+  document.forms.guessquiz.prompt.value=mesaj; 
+  document.forms.guessquiz.nr.focus();
+}
+// -->
+</script>
+
+<form onsubmit="" name="guessquiz">
+<center>
+<table align="center" bgcolor="#dadada" border="3" cellpadding="5">
+  <tr>
+    <td bgcolor="#018088">
+      <font color="#fefefe" face="arial"><b>Ghiceste numarul (1 - 100)</b></font>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <center>
+      <input type="text" name="prompt" size="31" maxlength="40" value="Ghiceste numarul (intre 1 si 100)"><br>
+      <input type="text" name="nr" size="3" maxlength="3" value="">
+      <input type="button" value="Ghiceste" onclick='procs(nrul)'>
+      </center>
+    </td>
+  </tr>
+</table>
+</center>
+<html>
+<body>
+
+<p></p>
+<p id = "id_logic_level_version"></p>
+
+<p id = "id_alpha"></p>
+<p id = "id_beta"></p>
+<p id = "id_gamma"></p>
+
+<p id = "id_acc">Acceleration = </p>
+<p id = "id_acc_g">AccelerationG = </p>
+<p id = "id_rotation_rate">Rotation rate = </p>
+
+
+<canvas width = "400" height = "300" id = "id_canvas">
+</canvas>
+
+<br>
+
+<svg width = "400" height = "300" id = "id_svg">
+<circle cx = "200" cy = "150" r = "10" stroke = "red" fill = "#ffffff" id = "id_circle"/>
+</svg>
+
+<script src = "sensors.js">
+</script>
+
+</body>
+
+<html>
+</form>
+<<-Text colorat 

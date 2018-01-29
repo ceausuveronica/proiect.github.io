@@ -1,0 +1,107 @@
+<html>
+<head>
+<script type="text/javascript">
+
+// Daca folositi un numar diferit de imagini
+// Schimbati nr. 5 in acord cu nr. dv de imagini
+grphcs=new Array(5) 
+
+// Mai jos adaugati calea catre imagini
+Image0=new Image();
+Image0.src=grphcs[0]="avion0.gif"
+Image1=new Image();
+Image1.src=grphcs[1]="avion1.gif"
+Image2=new Image();
+Image2.src=grphcs[2]="avion2.gif"
+Image3=new Image();
+Image3.src=grphcs[3]="avion3.gif"
+Image4=new Image();
+Image4.src=grphcs[4]="avion4.gif"
+
+// Specificati nr. de imagini care va apare pe ecran
+Amount=3; 
+// Matricele pt. stocarea pozitiei, vitezei
+Ypos=new Array();
+Xpos=new Array();
+Speed=new Array();
+Step=new Array();
+Cstep=new Array();
+
+// Variabilele in functie de browser
+ns=(document.layers)?1:0;
+moz=(document.getElementById&&!document.all)?1:0;
+ie=document.all
+
+// Pozitionarea implicita a cadrelor, ampurilor DIV si
+// a imaginilor incluse in ele
+if (ns) {
+  for (i = 0; i < Amount; i++) {
+    var P=Math.floor(Math.random()*grphcs.length);
+    rndPic=grphcs[P];
+    document.write("<LAYER NAME='sn"+i+"' LEFT=0 TOP=0><img src="+rndPic+"></LAYER>");
+  }
+}
+else {
+  document.write('<div style="position:absolute;top:0px;left:0px"><div style="position:relative">');
+  for (i = 0; i < Amount; i++) {
+    var P=Math.floor(Math.random()*grphcs.length);
+    rndPic=grphcs[P];
+    document.write('<img id="si'+i+'" src="'+rndPic+'" style="position:absolute;top:0px;left:0px">');
+  }
+  document.write('</div></div>');
+}
+WinHeight=(ns||moz)?window.innerHeight-70:window.document.body.clientHeight;
+WinWidth=(ns||moz)?window.innerWidth:window.document.body.clientWidth;
+for (i=0; i < Amount; i++) { 
+  Ypos[i] = Math.round(Math.random()*WinHeight);
+  Xpos[i] = Math.round(Math.random()*WinWidth);
+  Speed[i]= Math.random()*5+1;
+  Cstep[i]=0;
+  Step[i]=Math.random()*0.1+0.05;
+}
+// Functia pentru efectul de zbor
+function fly() {
+  var WinHeight=(ns||moz)?window.innerHeight:window.document.body.clientHeight;
+  var WinWidth=(ns||moz)?window.innerWidth-70:window.document.body.clientWidth;
+  var hscrll=(ns||moz)?window.pageYOffset:document.body.scrollTop;
+  var wscrll=(ns||moz)?window.pageXOffset:document.body.scrollLeft;
+
+  for (i=0; i < Amount; i++) {
+    sy = Speed[i]*Math.sin(Cstep[i]);
+    sx = Speed[i]*2;
+    Ypos[i]+=sy;
+    Xpos[i]+=sx; 
+    if (Xpos[i] > WinWidth) {
+      Ypos[i]=Math.round(Math.random()*WinHeight);
+      Xpos[i]=-60;
+      Speed[i]=Math.random()*5+1;
+    }
+
+    if (ns) {
+      document.layers['sn'+i].left=Xpos[i]+wscrll;
+      document.layers['sn'+i].top=Ypos[i];
+    }
+
+    else if (moz) {
+      document.getElementById("si"+i).style.left=Xpos[i]+wscrll;
+      document.getElementById("si"+i).style.top=Math.min(WinHeight,Ypos[i]);
+    }
+
+    else {
+      eval("document.all.si"+i).style.left=Xpos[i]+wscrll;
+      eval("document.all.si"+i).style.top=Ypos[i];
+    } 
+    Cstep[i]+=Step[i];
+  }
+  // Apeleaza functia pt. efect de zbor la fiecare 20 miimi secunda
+  setTimeout('fly()',20);
+}
+// Apeleaza functia la incarcarea paginii
+if (ie||ns||moz)
+window.onload=fly
+//-->
+</script>
+</body>
+
+
+</html>

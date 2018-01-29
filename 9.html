@@ -1,41 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-<script type="text/javascript">
+<!---{
+  "experiments": ["amp-ima-video"]
+}--->
 <!--
-function ceas() {
-  var Digital=new Date()
-  var hours=Digital.getHours()     // Preia ora
-  var minutes=Digital.getMinutes()     // Preia minutele
-  var seconds=Digital.getSeconds()     // Preia secundele
-  var dn="AM" 
-  // Stabileste afisarea AM (Ante Meridian) sau PM (Post Meridian)
-  if (hours>12) {
-    dn="PM"
-    hours=hours-12
-  }
-  if (hours==0)
-    hours=12
-  if (minutes<=9)
-    minutes="0"+minutes
-  if (seconds<=9)
-    seconds="0"+seconds
+  ## Introduction
 
-// Aici poti schimba marimea si tipul fontului
-// Creaza si afiseaza elementele HTML in eticheta <div>
-  myclock="<font size='4' face='Arial' ><b><font size='1'>Ora curena</font><br>"+hours+":"+minutes+":"
-+seconds+" "+dn+"</b></font>"
+  [amp-ima-video](https://github.com/ampproject/amphtml/blob/master/extensions/amp-ima-video/amp-ima-video.md)
+  embeds a video player for instream video ads that are integrated with the
+  [IMA SDK](https://developers.google.com/interactive-media-ads/docs/sdks/html5/).
 
-  document.getElementById("ceas2").innerHTML=myclock
-  setTimeout("ceas()",1000)     // Executa functia ceas() la fiecare secunda
-}
-window.onload=ceas;     // Executa functia ceas() la incarcarea scriptului
-//-->
-</script>
-</body>
-<div id="ceas2"></div>
-<div/><div/>
-
+  The plugin provides a video player with controls for your content, and requests
+  and displays ads from a VAST-compliant ad server of your choice using the IMA SDK.
+-->
+<!-- -->
+<!doctype html>
+<html ⚡>
 <head>
   <meta charset="utf-8">
   <link rel="canonical" href="<%host%>/components/amp-ima-video/">
@@ -63,25 +41,3 @@ window.onload=ceas;     // Executa functia ceas() la incarcarea scriptului
 
 </body>
 </html>
-
-
-
-
-<body>
-<html>
-<body>
-
-<p>UI version: 2018.01.29.0</p>
-<p id = "id_logic_level_version">Logic level version:</p>
-
-<canvas width = "400" height = "300" id = "id_canvas">
-</canvas>
-
-<img src = "2.jpg" id = "id_img" style = "display:none"/>
-
-<script src = "media.js">
-</script>
-
-</body>
-
-<html>

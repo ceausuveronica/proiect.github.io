@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+<body>
+<div id="idul" style="width:100px; height:100px; margin-left:0px; background-color:green;" onclick="set_move()"> </div>
+
+<script type="text/javascript"><!--
+// Functia care preia valoarea css (preluata si modificata de la www.javascriptkit.com)
+function getStyle(el, cssprop){
+    var val_css = '';         // Variabila cu valoarea CSS ce va fi returnata
+
+    if(el.currentStyle) val_css = el.currentStyle[cssprop];         // Pentru browsere IE
+    else if(document.defaultView && document.defaultView.getComputedStyle) val_css = document.defaultView.getComputedStyle(el, "")[cssprop];         // Pentru browsere Firefox
+    else val_css = el.style[cssprop];
+
+    return val_css;         // Returneaza valoarea
+}
+
+var im = 3;         // Indice de miscare (nr. pixeli adaugati la fiecare mutare)
+
+var el = document.getElementById('idul');         // Obiectul elementului la care se aplica efectul
+
+var el_p = el.parentNode;         // Preia elementul parinte al celui cu efectul
+
+var lu_e = parseInt(getStyle(el, 'width'));         // Preia lungimea cadrului cu efectul (ca numar intreg)
+
+var ml_e = parseInt(getStyle(el, 'marginLeft'));         // Preia valoarea marginii din stanga "marginLeft" (ca numar intreg)
+
+var lu_p = parseInt(getStyle(el_p, 'width'));         // Preia lungimea zonei parinte "el_p" (ca numar intreg)
+
+var l_m = lu_p - lu_e;         // Stabileste lungimea de miscare
+
+// Functia pt. mutarea cadrului, dand efect de miscare
+function set_move() {
+    ml_e = ml_e + im;     // Modifica valoarea marginii din stanga cu "im"
+
+    // Daca marginea din stanga "ml_e" e mai mica decat lungimea stabilita de miscare "l_m"
+    // Muta elementul spre dreapta (mareste marginea din stanga) cu "ml_e" px si auto-apeleaza functia
+    if(ml_e<l_m && ml_e>0){
+        el.style.marginLeft = ml_e+'px';
+        setTimeout('set_move()', 10);
+    }
+    else {
+        im = - im;         // Schimba din pozitiv in negativ (si invers) valoarea lui "im" pentru a schimba sensul miscarii
+    }
+}
+//--></script>
+<html>

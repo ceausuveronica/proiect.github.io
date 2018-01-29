@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+<body>
+<div id="div1" style="width:100px; height:100px; background-color:DodgerBlue">Cadrul 1</div>
+<div id="div2" style="width:130px; height:100px; background-color:green">Cadrul 2</div>
+<button onclick="f_ex2('div1', 'div2')">Click</button>
+
+<script type="text/javascript"><!--
+// Functia pt. preluarea valoarii css
+function getStyle(el, cssprop){
+    var val_css = '';         // Variabila cu valoarea CSS ce va fi returnata
+
+    if(el.currentStyle) val_css = el.currentStyle[cssprop];         // Pentru browsere IE
+    else if(document.defaultView && document.defaultView.getComputedStyle) val_css = document.defaultView.getComputedStyle(el, "")[cssprop];         // Pentru browsere Firefox
+    else val_css = el.style[cssprop];
+
+    return val_css;         // Returneaza valoarea
+}
+
+    // Functia care preia si schimba culorile elementelor intre ele
+function f_ex2(id_e1, id_e2) {
+    // Preia elementele dupa id-urile din parametri
+    var el1 = document.getElementById(id_e1);
+    var el2 = document.getElementById(id_e2);
+
+    // Obtine culorile background ale celor 2 elemente si lungimea celui de-al doilea (cu functia "getStyle()")
+    var bg_e1 = getStyle(el1, 'backgroundColor');
+    var bg_e2 = getStyle(el2, 'backgroundColor');
+    var l_e2 = getStyle(el2, 'width');
+
+    // Seteaza primului element culoarea din al doilea si invers
+    el1.style.backgroundColor = bg_e2;
+    el2.style.backgroundColor = bg_e1;
+
+    // Afiseaza ca text in cadrul elementului doi lungimea acestuia
+    el2.innerHTML = 'Lungime - '+ l_e2;
+}
+//--></script>
+<html>

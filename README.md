@@ -1,3 +1,2 @@
-# proiect.github.io
-media
-
+# ceausuveronica.github.io
+site-ul meu presonal
