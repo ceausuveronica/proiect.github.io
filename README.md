@@ -1,2 +1,2 @@
-# rveronica
+proiect.github.io
 proiect
